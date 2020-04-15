@@ -1,0 +1,115 @@
+---
+title: "Recommender Systems - YouTube"
+author: "Subhalaxmi Rout"
+output: 
+  prettydoc::html_pretty:
+  theme: architect
+---
+
+```{r setup, echo=FALSE, cache=FALSE}
+library(knitr)
+library(rmdformats)
+
+## Global options
+options(max.print="75")
+opts_chunk$set(echo=FALSE,
+	             cache=TRUE,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+```
+
+
+### Scenario Design analysis
+
+YouTube is the world’s largest platform for creating, sharing and discovering video content. YouTube recommendations are responsible for helping more than a billion users discover personalized content from an ever-growing corpus.
+YouTube recommendations use `TensorFlow`, with the help of TensorFlow can experiment with different deep neural network architectures using distributed training.
+
+
+### Scenario Design for YouTube
+
+* Who are your target users?
+
+For content creator or The target user is audiences, who are groups of people with specific interests, intents, and demographics, as estimated by Google. These include Demographic groups: Choose the age, gender, parental status or household income of the audience that you want to reach.
+
+* What are their key goals?
+
+YouTube wants more number of users using their platform. YouTube provides free access to the user, where user can create their own channel, published videos and other YouTube users can get benefits out of this. This way, more number of the user using their platform. 
+
+* How can you help them accomplish those goals?
+
+1. The YouTube player should allow users to load an external subtitle file.
+2. On the search results page, the number of likes and dislikes should be displayed. This will help users make a decision on what to watch.
+3. User ratings on a scale of one to five or one to ten can be assigned to each video. This would help users select the best videos.
+
+### Scenario Design for YouTube users'
+
+Note: YouTubers, or video content creators solely based on YouTube. These are essentially personalities, such as those on television talk shows or reality shows, with their own unique channels.
+
+* Who are your target users?
+
+The target user of video content creators is everyone who wants to look at videos over the internet. These days billions of people use YouTube for different uses. People are using YouTube to watch music videos, comedy shows, how-to guides, recipes, hacks and more.
+
+* What are their key goals?
+
+The goals of video content creators is provide videos to viewers, they want to watch, and to maximize long-term viewer engagement and satisfaction. By watching videos a user is to receive some kind of knowledge or entertainment.
+
+* How can you help them accomplish those goals?
+
+ 1. Content creators should provide subtitles or closed captions. Closed caption benefits everybody. People with disabilities such as deaf or hard of hearing can access the multimedia content. Non-native speakers can benefit from subtitles. Subtitles help people in different situations, for example, some people enjoy multimedia content when the surrounding noise level is high (in a restaurant, sports stadium) or when they can't use audio (in library).
+2. Content creators should provide audio description. The audio description helps people with visual impairment.
+Given these facilities a wide range of crowds able to watch videos. 
+
+### YouTube Recommender Systems
+
+YouTube is very easy to search video for the user wants to watch. Recommendation algorithm is pretty helpful which makes the user spend more time on YouTube. The recommendation is designed in such a way that most YouTube users, though, are logged in and receive recommendations based on their viewing history.
+
+Google changed the YouTube algorithm in 2016 to a new one made by their Artificial intelligence company Deep Mind. It uses deep learning neural networks to optimize the user’s expected watch time.
+
+The algorithm has two steps, both of which use multi-layer neural networks.
+
+1. Candidate generation. This selects a few hundred possible videos for the user from YouTube’s entire corpus of videos. It uses quite a crude personalization criteria based on videos also commonly watched by people who watch similar videos to the user and similarity of demographics.
+
+2. Ranking. The smaller subset of videos is each scored for expected watch time. This uses hundreds of features to try to predict the watch time. e.g. the number of videos the user has watched in the same channel, search query made by the user before watching the video, how long ago the user watched a video on the same topic.
+
+Part of the reason for using two stages is because of the scale of the problem. YouTube has a very large number of videos that rapidly update. This means, for example, it is so far impractical to just run the second stage algorithm across all videos.
+
+This two-stage algorithm with these criteria leads to YouTube recommending short term addictive videos, selected from a small set of popular videos.
+
+
+### Reverse engineering
+
+Below given describes how YouTube’s Browse, Suggested Videos, and Recommended Videos features actually function.
+
+The YouTube algorithm gives very little weight to video publisher-based metrics. It’s far more concerned with audience and individual-video-based metrics. Or, in laymen’s terms, the algorithm doesn’t really care about the videos Youtubers are posting, but it cares a LOT about the videos users (and everyone else) are watching.
+
+YouTube uses three primary viewer factors to choose which videos to promote. These inputs are Watch History, Search History, and Demographic Information.
+
+There are two filters a video must get through in order to be promoted by way of YouTube’s Browse, Suggested Videos, and Recommended Videos features:
+
++ Candidate Generation Filter
++ Ranking Filter
+
+The Ranking Filter uses the viewer inputs, as well as other factors such as “Freshness” and Clickthrough Rates.
+
+The promotional algorithm is designed to continually increase watch time on site by continually A/B testing videos and then feeding that data back into the neural networks, so that YouTube can promote videos that lead to longer viewing sessions.
+
+
+### Recommendations
+
+The videos recommend by YouTube are influenced by user activity on YouTube and other Google products. 
+
+1. YouTube should provide a functionality for users to load any external subtitle. Additionally, the search algorithm can be updated to prioritize the videos with subtitles and/or audio description.
+2. YouTube should add user rating functionality for videos and the search algorithm should be prioritize the views with good rating.
+
+
+### Reference
+
+Deep Neural Networks for YouTube Recommendations-  https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf
+
+Audio Descriptions - https://www.youtube.com/watch?v=T9FZxnlIHss
+
+Reverse Engineering - https://www.tubefilter.com/2017/02/16/youtube-algorithm-reverse-engineering-part-ii/
+
+
+
